@@ -10,7 +10,7 @@ const Speciality = () => {
                 <div className='px-5 py-8 md:p-7 border-solid border rounded-lg'>
                     <img src='https://i.imgur.com/u6VEsSS.jpg' alt="" />
                     <p className="text-2xl mt-7 mb-2 font-bold text-[#393E46]">CHICKEN TIKKA</p>
-                    <p className='text-xl text-[#393E46]'>We marinate chicken breast in yoghurt and lemons then cook it in our traditional oven Tandoor.</p>
+                    <p className='text-xl text-[#393E46]'>We marinate chicken breast in yoghurt and lemons then cook it in our traditional oven Barisal Bistro.</p>
                 </div>
                 <div className='px-5 py-8 md:p-7 border-solid border rounded-lg'>
                     <img src='https://i.imgur.com/cFHQENv.jpg' alt="" />

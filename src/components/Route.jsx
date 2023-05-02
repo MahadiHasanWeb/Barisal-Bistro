@@ -4,6 +4,7 @@ import Home from "./Home/Home";
 import Layout from "./Layout/Layout";
 import Blog from "./Blog/Blog";
 import ErrorPage from "./ErrorPage/ErrorPage";
+import RecipesDetails from "./View Recipes/RecipesDetails";
 
 export const router = createBrowserRouter([
     {
@@ -18,6 +19,11 @@ export const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '/:id',
+                element: <RecipesDetails></RecipesDetails>,
+                loader: ({params}) => fetch(`https://server-mahadihasanweb.vercel.app/${params.id}`)
             },
         ],
     },

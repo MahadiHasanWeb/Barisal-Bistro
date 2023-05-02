@@ -2,7 +2,7 @@ import React from 'react';
 
 const Catering = () => {
     return (
-        <div className='bg-[url(https://i.imgur.com/Y0XjGAP.jpg)] bg-auto bg-no-repeat p-4'>
+        <div className='bg-[url(https://i.imgur.com/Y0XjGAP.jpg)] bg-auto bg-no-repeat p-4 md:p-8 md:mt-24 mb-5 md:mb-12'>
             <div className="bg-[url(https://i.imgur.com/JZCPM5e.png)] bg-no-repeat bg-center bg-[length:100%_100%] md:bg-[length:500px_150%] mt-10 md:mt-24 mb-5 md:mb-12">
                 <h3 className=" md:text-5xl text-3xl text-[#393E46] text-center font-bold">Catering</h3>
             </div>

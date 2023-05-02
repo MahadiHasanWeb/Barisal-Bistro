@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ChefData = ({ data }) => {
-    console.log(data)
-    const { chef_name, chef_picture, experience, likes, recipes_number } = data;
+    // console.log(data)
+    const { chef_name, chef_picture, experience, likes, recipes_number, id } = data;
     return (
         <div className='px-5 py-10 md:p-10 border-solid border rounded-lg'>
             <img src={chef_picture} alt="" />
@@ -12,7 +13,7 @@ const ChefData = ({ data }) => {
                 <p className="textColor text-[#393E46]"> Likes:{likes}</p>
                 <p className="textColor text-[#393E46]">Numbers of recipes: {recipes_number}</p>
             </div>
-            <button className='button button-primary'>View Recipes</button>
+            <Link to={id}><button className='button button-primary'>View Recipes</button></Link>
         </div>
     );
 };
