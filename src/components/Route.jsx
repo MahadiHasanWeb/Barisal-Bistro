@@ -6,6 +6,7 @@ import ErrorPage from "./ErrorPage/ErrorPage";
 import RecipesDetails from "./View Recipes/RecipesDetails";
 import Login from "./Authentication/Login";
 import Registration from "./Authentication/Registration";
+import PrivateRoute from "./Authentication/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/:id',
-                element: <RecipesDetails></RecipesDetails>,
+                element: <PrivateRoute><RecipesDetails></RecipesDetails></PrivateRoute>,
                 loader: ({ params }) => fetch(`https://server-mahadihasanweb.vercel.app/${params.id}`)
             },
         ],

@@ -5,7 +5,10 @@ import { AuthContext } from '../Authentication/AuthProvider';
 
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut().then().catch()
+    }
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -29,8 +32,10 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {user && <ActiveLink to='/login'><a className=""><FaRegUserCircle className='w-full h-10 text-[#00ADB5]' /></a></ActiveLink>}
-                
+                {user && <ActiveLink to='/login'><p className=""><FaRegUserCircle className='w-full h-10 text-[#00ADB5]' /></p></ActiveLink>}
+                {user ? <ActiveLink to='/login'><button onClick={handleLogOut} className="button button-primary bg-[#00ADB5] ms-4 md:ms-8">Log Out</button></ActiveLink> :
+                    <ActiveLink to='/login'><button className="button button-primary bg-[#00ADB5] ms-4 md:ms-8">Login</button></ActiveLink>}
+
             </div>
         </div>
     );
