@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 import Recipes from './Recipes';
+import ExtraBanner from './ExtraBanner';
 
 const RecipesDetails = () => {
     const data = useLoaderData();
@@ -8,7 +9,7 @@ const RecipesDetails = () => {
     const { chef_name, chef_picture, bio, likes, recipes_number, experience, food } = data;
     // const { id, chef_picture } = useParams();
     return (
-        <div >
+        <div>
             <div className="bg-[url(https://i.imgur.com/JZCPM5e.png)] bg-no-repeat bg-center bg-[length:100%_100%] md:bg-[length:500px_150%] mt-10 md:mt-24 mb-5 md:mb-12">
                 <h3 className=" md:text-5xl text-[#393E46] text-3xl text-center font-bold">Chef Details</h3>
             </div>
@@ -35,14 +36,7 @@ const RecipesDetails = () => {
                     ></Recipes>)
                 }
             </div>
-
-            <div className="mt-10 md:mt-24 mb-5 md:mb-12 bg-cover bg-center  h-auto text-white py-24 px-10 object-fill bg-[url(https://i.imgur.com/EHTyWjY.jpeg)]" >
-                <div className="md:w-1/2">
-                    <p className="font-bold text-sm uppercase">Services</p>
-                    <p className="text-3xl font-bold">Food products</p>
-                    <p className="text-2xl mb-10 leading-none">Transform your Experience with Barisal Bistro</p>
-                </div>
-            </div>
+            <ExtraBanner></ExtraBanner>
         </div>
     );
 };

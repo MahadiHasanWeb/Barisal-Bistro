@@ -17,7 +17,7 @@ const Recipes = ({ RecipesData }) => {
     }
 
     return (
-        <div className="card card-compact w-96 bg-base-100 shadow-xl">
+        <div className="card card-compact w-96 bg-base-100 shadow-xl ">
             <figure className='h-[220px]'><img src={food_picture} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{food_name}</h2>
