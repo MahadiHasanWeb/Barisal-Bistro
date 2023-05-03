@@ -7,12 +7,13 @@ import { updateProfile } from 'firebase/auth';
 
 const Registration = () => {
     const notify = () => toast("Successfully Create Account!");
-    const notify2 = () => toast("Successfully Login!");
+    const notify2 = () => toast("Login With Google!");
+    const notifyGit = () => toast("Login With Github!");
     const [error, setError] = useState('');
     const notifyError = () => toast(`${error}`);
     const [success, setSuccess] = useState('');
 
-    const { createUser, GoogleLogin } = useContext(AuthContext);
+    const { createUser, GoogleLogin, GithubLogin } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -23,10 +24,10 @@ const Registration = () => {
         GoogleLogin()
             .then(res => {
                 const user = res.user;
-                console.log(user);
+                // console.log(user);
                 setError('');
                 notify2();
-                setSuccess('Successfully Login!');
+                setSuccess('Login With Google!');
                 navigate(from, { replace: true })
             })
             .catch((error) => {
@@ -37,6 +38,25 @@ const Registration = () => {
             });
     }
 
+    // Github Login
+
+    const GithubHandler = () => {
+        GithubLogin()
+            .then(res => {
+                const user = res.user;
+                // console.log(user);
+                setError('');
+                notifyGit();
+                setSuccess('Login With Github!');
+                navigate(from, { replace: true })
+            })
+            .catch((error) => {
+                console.error(error)
+                setError(error.message);
+                notifyError();
+                setSuccess();
+            });
+    }
 
     // Email and password Login
     const handleRegister = event => {
@@ -48,15 +68,15 @@ const Registration = () => {
         const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        // if (!/(?=.*[A-Z].*[A-Z].{8})/.test(password)) {
-        //     setError('Please ensure password is of length 8 and two Uppercase');
-        //     return
-        // }
-        console.log(name, photo, email, password);
+        if (!/(?=.{8})/.test(password)) {
+            setError('Please ensure password is of length 8');
+            return
+        }
+        // console.log(name, photo, email, password);
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
+                // console.log(loggedUser);
                 setError('');
                 event.target.reset();
                 notify();
@@ -78,10 +98,10 @@ const Registration = () => {
             photoURL: photo
         })
             .then(() => {
-                console.log('user name updated')
+                // console.log('user name updated')
             })
             .catch(err => {
-                console.log(err.message)
+                // console.log(err.message)
                 setError(err.message)
             })
     }
@@ -132,7 +152,7 @@ const Registration = () => {
                         <button onClick={GoogleHandler} className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGoogle />
                             Google
                         </button>
-                        <button className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGithub />
+                        <button onClick={GithubHandler} className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGithub />
                             Github
                         </button>
                     </div>

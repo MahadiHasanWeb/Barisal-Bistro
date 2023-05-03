@@ -6,6 +6,10 @@ import { AuthContext } from '../Authentication/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    console.log(user)
+    // const photoURL = user.photoURL;
+    // const displayName = user.displayName;
+    // console.log(photoURL, displayName)
     const handleLogOut = () => {
         logOut().then().catch()
     }
@@ -32,8 +36,9 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {user && <ActiveLink to='/login'><p className=""><FaRegUserCircle className='w-full h-10 text-[#00ADB5]' /></p></ActiveLink>}
-                {user ? <ActiveLink to='/login'><button onClick={handleLogOut} className="button button-primary bg-[#00ADB5] ms-4 md:ms-8">Log Out</button></ActiveLink> :
+                {/* {user && <ActiveLink><p className=""><FaRegUserCircle className='w-full h-10 text-[#00ADB5]' /></p></ActiveLink>} */}
+                {user && <img title={user.displayName} className='w-[52px] md:w-[60px] rounded-full h-[52px] md:h-[60px]' src={user.photoURL} alt="" />}
+                {user ? <ActiveLink to='/'><button onClick={handleLogOut} className="button button-primary bg-[#00ADB5] ms-4 md:ms-8">Log Out</button></ActiveLink> :
                     <ActiveLink to='/login'><button className="button button-primary bg-[#00ADB5] ms-4 md:ms-8">Login</button></ActiveLink>}
 
             </div>

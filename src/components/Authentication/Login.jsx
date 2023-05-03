@@ -6,6 +6,8 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
     const notify = () => toast("Successfully Login!");
+    const notify2 = () => toast("Login With Google!");
+    const notifyGit = () => toast("Login With Github!");
     const [error, setError] = useState('');
     const notifyError = () => toast(`${error}`);
     const [success, setSuccess] = useState('');
@@ -15,7 +17,7 @@ const Login = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
-    const { signIn, GoogleLogin } = useContext(AuthContext);
+    const { signIn, GoogleLogin, GithubLogin } = useContext(AuthContext);
 
     // Google Login
 
@@ -23,9 +25,9 @@ const Login = () => {
         GoogleLogin()
             .then(res => {
                 const user = res.user;
-                console.log(user);
+                // console.log(user);
                 setError('');
-                notify();
+                notify2();
                 setSuccess('Successfully Login!');
                 navigate(from, { replace: true })
             })
@@ -37,6 +39,25 @@ const Login = () => {
             });
     }
 
+    // Github Login
+
+    const GithubHandler = () => {
+        GithubLogin()
+            .then(res => {
+                const user = res.user;
+                // console.log(user);
+                setError('');
+                notifyGit();
+                setSuccess('Successfully Login!');
+                navigate(from, { replace: true })
+            })
+            .catch((error) => {
+                console.error(error)
+                setError(error.message);
+                notifyError();
+                setSuccess();
+            });
+    }
 
     // Email and password Login
     const handleLogin = event => {
@@ -44,12 +65,12 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+        // console.log(email, password)
         signIn(email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(user)
+                // console.log(user)
                 setError('');
                 event.target.reset();
                 notify();
@@ -101,7 +122,7 @@ const Login = () => {
                         <button onClick={GoogleHandler} className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGoogle />
                             Google
                         </button>
-                        <button className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGithub />
+                        <button onClick={GithubHandler} className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGithub />
                             Github
                         </button>
                     </div>
