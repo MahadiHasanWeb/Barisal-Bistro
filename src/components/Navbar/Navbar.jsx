@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ActiveLink from '../ActiveLink/ActiveLink';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { AuthContext } from '../Authentication/AuthProvider';
 
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext);
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -26,7 +29,8 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <li><ActiveLink to='/login'><a className="button button-primary bg-[#00ADB5]">User</a></ActiveLink></li>
+                {user && <ActiveLink to='/login'><a className=""><FaRegUserCircle className='w-full h-10 text-[#00ADB5]' /></a></ActiveLink>}
+                
             </div>
         </div>
     );
