@@ -1,17 +1,44 @@
 import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
 import { toast } from 'react-toastify';
 import { updateProfile } from 'firebase/auth';
 
 const Registration = () => {
     const notify = () => toast("Successfully Create Account!");
+    const notify2 = () => toast("Successfully Login!");
     const [error, setError] = useState('');
+    const notifyError = () => toast(`${error}`);
     const [success, setSuccess] = useState('');
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, GoogleLogin } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
+    // Google Login
+
+    const GoogleHandler = () => {
+        GoogleLogin()
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+                setError('');
+                notify2();
+                setSuccess('Successfully Login!');
+                navigate(from, { replace: true })
+            })
+            .catch((error) => {
+                console.error(error)
+                setError(error.message);
+                notifyError();
+                setSuccess();
+            });
+    }
+
+
+    // Email and password Login
     const handleRegister = event => {
         event.preventDefault();
         setError('');
@@ -34,6 +61,7 @@ const Registration = () => {
                 event.target.reset();
                 notify();
                 setSuccess('User has created successfully');
+                navigate(from, { replace: true })
                 updateUserData(result.user, name, photo);
             })
             .catch(Error => {
@@ -101,7 +129,7 @@ const Registration = () => {
                     </div>
 
                     <div className="flex flex-row gap-2">
-                        <button className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGoogle />
+                        <button onClick={GoogleHandler} className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGoogle />
                             Google
                         </button>
                         <button className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGithub />

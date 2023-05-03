@@ -15,7 +15,30 @@ const Login = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn, GoogleLogin } = useContext(AuthContext);
+
+    // Google Login
+
+    const GoogleHandler = () => {
+        GoogleLogin()
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+                setError('');
+                notify();
+                setSuccess('Successfully Login!');
+                navigate(from, { replace: true })
+            })
+            .catch((error) => {
+                console.error(error)
+                setError(error.message);
+                notifyError();
+                setSuccess();
+            });
+    }
+
+
+    // Email and password Login
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -37,7 +60,7 @@ const Login = () => {
                 console.error(error)
                 setError(error.message);
                 notifyError();
-                setSuccess('');
+                setSuccess();
             });
     }
     return (
@@ -75,7 +98,7 @@ const Login = () => {
                     </div>
 
                     <div className="flex flex-row gap-2">
-                        <button className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGoogle />
+                        <button onClick={GoogleHandler} className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGoogle />
                             Google
                         </button>
                         <button className="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center rounded-sm hover:bg-gray-800 duration-100 ease-in-out"> <FaGithub />
