@@ -32,7 +32,6 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal px-1">
                     <li><ActiveLink to='/'><p>Home</p></ActiveLink></li>
                     <li><ActiveLink to='/blog'><p>Blog</p></ActiveLink></li>
-                    <li><ActiveLink to='/blog'><p>About Us</p></ActiveLink></li>
                 </ul>
             </div>
             <div className="navbar-end">
