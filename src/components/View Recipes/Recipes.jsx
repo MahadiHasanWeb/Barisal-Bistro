@@ -5,11 +5,7 @@ import { toast } from 'react-toastify';
 const Recipes = ({ RecipesData }) => {
 
     const [Favorites, setFavorites] = useState(false);
-
-
-
     const { details, food_name, food_picture, Ingredients } = RecipesData;
-    console.log(RecipesData)
 
     const btnFavorites = () => {
         setFavorites(true);

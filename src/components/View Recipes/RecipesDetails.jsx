@@ -13,12 +13,12 @@ const RecipesDetails = () => {
             <div className="bg-[url(https://i.imgur.com/JZCPM5e.png)] bg-no-repeat bg-center bg-[length:100%_100%] md:bg-[length:500px_150%] mt-10 md:mt-24 mb-5 md:mb-12">
                 <h3 className=" md:text-5xl text-[#393E46] text-3xl text-center font-bold">Chef Details</h3>
             </div>
-            <div className='grid md:grid-cols-2 items-center gap-6 md:gap-10 bg-[#7E90FE0D] mt-12 p-4 md:p-8'>
+            <div className='grid md:grid-cols-2 items-center gap-6 md:gap-10 bg-[#EEEEEE] mt-12 p-4 md:p-8'>
                 <div className="">
-                    <h1 className="md:text-4xl text-3xl font-bold mb-6"> {chef_name}</h1>
-                    <p className='text-xl text-[#393E46]'>Years of experience: {experience} Years +</p>
+                    <h1 className="md:text-4xl text-3xl font-bold mb-6">Chef {chef_name}</h1>
+                    <p className="text-xl text-[#393E46]"> Likes: {likes}</p>
                     <p className="text-xl text-[#393E46]">Numbers of recipes: {recipes_number} items</p>
-                    <p className="text-xl text-[#393E46]"> Likes:{likes}</p>
+                    <p className='text-xl text-[#393E46]'>Years of experience: {experience} Years +</p>
                     <p className=' text-[#393E46]'>{bio}</p>
                 </div>
                 <div className="">
@@ -28,7 +28,7 @@ const RecipesDetails = () => {
             <div className="bg-[url(https://i.imgur.com/JZCPM5e.png)] bg-no-repeat bg-center bg-[length:100%_100%] md:bg-[length:500px_150%] mt-10 md:mt-24 mb-5 md:mb-12">
                 <h3 className=" md:text-5xl text-[#393E46] text-3xl text-center font-bold">Chef Recipes</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ms-[9px] md:ms-0">
                 {
                     food.map(RecipesData => <Recipes
                         key={RecipesData.id}
