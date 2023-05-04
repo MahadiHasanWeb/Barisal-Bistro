@@ -15,7 +15,7 @@ const RecipesDetails = () => {
             </div>
             <div className='grid md:grid-cols-2 items-center gap-6 md:gap-10 bg-[#EEEEEE] mt-12 p-4 md:p-8'>
                 <div className="">
-                    <h1 className="md:text-4xl text-3xl font-bold mb-6">Chef {chef_name}</h1>
+                    <h1 className="md:text-4xl text-3xl font-bold text-[#393E46] mb-6">Chef {chef_name}</h1>
                     <p className="text-xl text-[#393E46]"> Likes: {likes}</p>
                     <p className="text-xl text-[#393E46]">Numbers of recipes: {recipes_number} items</p>
                     <p className='text-xl text-[#393E46]'>Years of experience: {experience} Years +</p>
