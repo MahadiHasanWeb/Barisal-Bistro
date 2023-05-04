@@ -3,6 +3,7 @@ import Header from './Header/Header';
 import ChefData from './ChefData/ChefData';
 import Speciality from './SPECIALITY';
 import Catering from './Catering';
+import LazyLoad from 'react-lazy-load';
 
 const Home = () => {
     const [chefData, setChefData] = useState([]);

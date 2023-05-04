@@ -1,12 +1,14 @@
 import React from 'react';
+import LazyLoad from 'react-lazy-load';
 import { Link } from 'react-router-dom';
 
 const ChefData = ({ data }) => {
-    // console.log(data)
     const { chef_name, chef_picture, experience, likes, recipes_number, id } = data;
     return (
         <div className='px-5 py-10 md:p-10 border-solid border bg-[#fffcfc] rounded-lg'>
-            <img className='' src={chef_picture} alt="" />
+            <LazyLoad threshold={0.95} onContentVisible={() => { console.log('loaded!') }}>
+                <img className='' src={chef_picture} alt="" />
+            </LazyLoad>
             <p className="text-4xl mt-7 font-bold text-[#393E46] mb-5">{chef_name}</p>
             <p className="textColor text-[#393E46] font-semibold text-xl"> Likes: {likes}</p>
             <p className="textColor text-[#393E46] font-semibold text-xl my-3">Numbers of recipes: {recipes_number} items</p>

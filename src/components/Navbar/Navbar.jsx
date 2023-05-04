@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import ActiveLink from '../ActiveLink/ActiveLink';
-import { FaRegUserCircle } from 'react-icons/fa';
 import { AuthContext } from '../Authentication/AuthProvider';
 
 

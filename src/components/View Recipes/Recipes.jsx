@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
+import LazyLoad from 'react-lazy-load';
 import { toast } from 'react-toastify';
 
 const Recipes = ({ RecipesData }) => {
 
     const [Favorites, setFavorites] = useState(false);
     const { details, food_name, food_picture, Ingredients } = RecipesData;
-
     const btnFavorites = () => {
         setFavorites(true);
         toast.success('Successfully Added to Favorites')
@@ -14,7 +14,9 @@ const Recipes = ({ RecipesData }) => {
 
     return (
         <div className="card card-compact w-96 shadow-xl bg-[#fffcfc]">
-            <figure className='h-[220px]'><img src={food_picture} alt="Shoes" /></figure>
+            <LazyLoad threshold={0.95} onContentVisible={() => { console.log('loaded!') }}>
+                <figure className='h-[220px]'><img src={food_picture} alt="Shoes" /></figure>
+            </LazyLoad>
             <div className="card-body">
                 <h2 className="card-title text-[#393E46] text-3xl">{food_name}</h2>
                 <p className='flex text-[#393E46] items-center gap-2 font-semibold text-[18px]'>Rating: <span className='text-[#393E46] flex gap-1'><FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar /></span></p>

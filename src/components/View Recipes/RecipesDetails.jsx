@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, useLoaderData, useParams } from 'react-router-dom';
+import { useLoaderData, } from 'react-router-dom';
 import Recipes from './Recipes';
 import ExtraBanner from './ExtraBanner';
+import LazyLoad from 'react-lazy-load';
 
 const RecipesDetails = () => {
     const data = useLoaderData();
-    // console.log(data)
     const { chef_name, chef_picture, bio, likes, recipes_number, experience, food } = data;
-    // const { id, chef_picture } = useParams();
+
     return (
         <div>
             <div className="bg-[url(https://i.imgur.com/JZCPM5e.png)] bg-no-repeat bg-center bg-[length:100%_100%] md:bg-[length:500px_150%] mt-10 md:mt-24 mb-5 md:mb-12">
@@ -21,8 +21,10 @@ const RecipesDetails = () => {
                     <p className='text-xl text-[#393E46]'>Years of experience: {experience} Years +</p>
                     <p className=' text-[#393E46]'>{bio}</p>
                 </div>
-                <div className="">
-                    <img src={chef_picture} alt="" className="" />
+                <div >
+                    <LazyLoad threshold={0.95} onContentVisible={() => { console.log('loaded!') }}>
+                        <img src={chef_picture} alt="" className="" />
+                    </LazyLoad>
                 </div>
             </div>
             <div className="bg-[url(https://i.imgur.com/JZCPM5e.png)] bg-no-repeat bg-center bg-[length:100%_100%] md:bg-[length:500px_150%] mt-10 md:mt-24 mb-5 md:mb-12">
